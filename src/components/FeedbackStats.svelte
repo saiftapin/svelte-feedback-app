@@ -2,7 +2,7 @@
   import {FeedbackStore} from '../stores'
 
   $: count = $FeedbackStore.length
-  $: average = $FeedbackStore.reduce((a, {rating}) => a + rating, 0) / $FeedbackStore.length
+  $: average = Math.round((($FeedbackStore.reduce((a, {rating}) => a + rating, 0) / $FeedbackStore.length || 0) + Number.EPSILON) * 100) / 100;
 </script>
 
 <div class="feedback-stats">
